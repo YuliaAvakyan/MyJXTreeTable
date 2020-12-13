@@ -20,7 +20,7 @@ public class TreeTable {
     }
 
     public JXTreeTable getTreeTable() {
-        root = new RootNode("Root");
+        root = new RootNode("55");
 
         ChildNode myChild = null;
         for (String[] data : this.content) {

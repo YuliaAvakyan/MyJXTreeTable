@@ -19,7 +19,7 @@ public class ShowJXTreeTable {
 
         content.add(new String[] { "Heading 1" });
         content.add(new String[] { "Sub 1", "Sub 2", "Sub 3" });
-        content.add(new String[] { "Sub 4", "Sub 5", "Sub 6" });
+      //  content.add(new String[] { "Sub 4", "Sub 5", "Sub 6" });
         content.add(new String[] { "Heading 2" });
         content.add(new String[] { "Sub 1", "Sub 2", "Sub 3" });
         content.add(new String[] { "Sub 4", "Sub 5", "Sub 6" });
