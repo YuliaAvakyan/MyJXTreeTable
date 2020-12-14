@@ -15,7 +15,7 @@ public class Data {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         for (int i = 0; i < 10; i++) {
             HumanGroup group = new HumanGroup(Integer.toString(i));
-            for (int j = 0; j < random.nextInt(10); j++) {
+            for (int j = 0; j < random.nextInt(2 , 10); j++) {
                 if ((j * i) % 2 == 0) {
                     group.add(new Man(
                             nameMan[random.nextInt(nameMan.length)],

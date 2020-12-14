@@ -7,11 +7,14 @@ package ru.oogis.myTable.v1.ui;
 
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
+import org.jdesktop.swingx.treetable.AbstractTreeTableModel;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import ru.oogis.myTable.v1.data.Data;
 import ru.oogis.myTable.v1.data.Human;
 import ru.oogis.myTable.v1.data.HumanGroup;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +24,7 @@ import java.util.List;
 public class PanelWithTable extends javax.swing.JPanel {
     private Data data;
 
-    private String[] nameColumn = {"Имя", "возраст", "город", "енергия"};
+    private String[] nameColumn = { "номер группы","Имя", "возраст", "город", "енергия"};
 
     /**
      * Creates new form Panel
@@ -29,11 +32,10 @@ public class PanelWithTable extends javax.swing.JPanel {
     public PanelWithTable(Data data) {
         this.data = data;
         initComponents();
-        DefaultTreeTableModel model = new DefaultTreeTableModel(getNode(), Arrays.asList(nameColumn));
+        AbstractTreeTableModel model = new MyTreeTableModel(getNode(), nameColumn);
         JXTreeTable table = new JXTreeTable(model);
-        jScrollPane1.add(table);
+        jScrollPane1.setViewportView(table);
 
-        add(table);
         table.setShowGrid(true, true);
         table.setColumnControlVisible(true);
 

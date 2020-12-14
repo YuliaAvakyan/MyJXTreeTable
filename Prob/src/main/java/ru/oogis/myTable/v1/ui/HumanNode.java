@@ -15,6 +15,7 @@ public class HumanNode extends AbstractMutableTreeTableNode {
     public Object getValueAt(int column) {
         Human human = (Human) getUserObject();
         switch (column) {
+
             case 0:
                 return human.getName();
             case 1:
