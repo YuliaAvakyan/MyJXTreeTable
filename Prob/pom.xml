@@ -32,11 +32,7 @@
             <artifactId>Prob</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>nb-javac-api</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
+
         <dependency>
             <groupId>org.swinglabs.swingx</groupId>
             <artifactId>swingx-all</artifactId>

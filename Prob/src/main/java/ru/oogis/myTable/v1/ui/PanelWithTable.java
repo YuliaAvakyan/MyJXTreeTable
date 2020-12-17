@@ -29,7 +29,7 @@ public class PanelWithTable extends javax.swing.JPanel {
     /**
      * Creates new form Panel
      */
-    public PanelWithTable(Data data) {
+    public PanelWithTable(Data data){
         this.data = data;
         initComponents();
         AbstractTreeTableModel model = new MyTreeTableModel(getNode(), nameColumn);
@@ -38,7 +38,18 @@ public class PanelWithTable extends javax.swing.JPanel {
 
         table.setShowGrid(true, true);
         table.setColumnControlVisible(true);
-
+        try {
+            System.out.println(UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         table.packAll();
     }
 
