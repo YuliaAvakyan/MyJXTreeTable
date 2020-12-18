@@ -23,12 +23,14 @@ import java.util.Map;
  */
 public class PanelWithGlobalTable extends javax.swing.JPanel {
 
+    private Map<String, Map<String, Map<String, Building>>> map;
 
     /**
      * Creates new form PanelWithGlobalTable
      */
-    //                                                                ЖИЛЬЁ           дома       тип
+    //                                                             ЖИЛЬЁ           дома       тип
     public PanelWithGlobalTable(List<String> nameColumnParameters, Map<String, Map<String, Map<String, Building>>> map) {
+        this.map = map;
         initComponents();
         initTable(nameColumnParameters, map);
     }
@@ -41,6 +43,10 @@ public class PanelWithGlobalTable extends javax.swing.JPanel {
         }
         treeTableModel.setRoot(root);
         JXTreeTable table = new JXTreeTable(treeTableModel);
+
+        table.setShowGrid(true, true);
+
+        table.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table);
     }
 
@@ -113,7 +119,7 @@ public class PanelWithGlobalTable extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-
+        System.out.println("next");
 
     }//GEN-LAST:event_nextButtonActionPerformed
 

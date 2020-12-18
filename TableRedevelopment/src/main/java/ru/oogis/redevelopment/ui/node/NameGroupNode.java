@@ -19,7 +19,7 @@ public class NameGroupNode extends AbstractMutableTreeTableNode {
             case 0:
                 return name;
             default:
-                return "";
+                return null;
         }
     }
 

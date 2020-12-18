@@ -15,13 +15,14 @@ public class FunctionalObjectsInTheBuildingNode extends AbstractMutableTreeTable
     }
 
     // TODO переделать switch   {"Name" , "id" , "Address" , "Name Object", "FunctionalObjects"};
+
     public Object getValueAt(int i) {
         switch (treeTableModel.getColumnName(i)) {
             case "FunctionalObjects":
                 return functionalObjectsInTheBuilding.getNameObject();
             default: {
-                Number number = functionalObjectsInTheBuilding.getNumberByKey(treeTableModel.getColumnName(i));
-                return number == null ? "" : number;
+                return functionalObjectsInTheBuilding.getNumberByKey(treeTableModel.getColumnName(i));
+
             }
         }
     }

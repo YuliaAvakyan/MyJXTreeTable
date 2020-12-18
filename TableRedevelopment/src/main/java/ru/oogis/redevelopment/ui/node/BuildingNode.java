@@ -24,7 +24,7 @@ public class BuildingNode extends AbstractMutableTreeTableNode {
             case 3:
                 return building.getObjectName();
             default:
-                return "";
+                return null;
         }
     }
 
