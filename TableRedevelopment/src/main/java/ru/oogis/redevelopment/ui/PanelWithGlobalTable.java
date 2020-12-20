@@ -7,9 +7,9 @@ package ru.oogis.redevelopment.ui;
 
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
-import ru.oogis.redevelopment.Start;
 import ru.oogis.redevelopment.data.model.Building;
 import ru.oogis.redevelopment.data.model.FunctionalObjectsInTheBuilding;
+import ru.oogis.redevelopment.data.model.WrapperForTheGlobalTable;
 import ru.oogis.redevelopment.ui.node.BuildingNode;
 import ru.oogis.redevelopment.ui.node.FunctionalObjectsInTheBuildingNode;
 import ru.oogis.redevelopment.ui.node.NameGroupNode;
@@ -23,22 +23,23 @@ import java.util.Map;
  */
 public class PanelWithGlobalTable extends javax.swing.JPanel {
 
-    private Map<String, Map<String, Map<String, Building>>> map;
+    private WrapperForTheGlobalTable wrapperForTheGlobalTable;
 
     /**
      * Creates new form PanelWithGlobalTable
      */
+    //TODO сделать враппер и туда пихать эту мапу , метод пересбора а node так же в врапер кинуть
     //                                                             ЖИЛЬЁ           дома       тип
-    public PanelWithGlobalTable(List<String> nameColumnParameters, Map<String, Map<String, Map<String, Building>>> map) {
-        this.map = map;
+    public PanelWithGlobalTable(WrapperForTheGlobalTable wrapperForTheGlobalTable) {
+        this.wrapperForTheGlobalTable = wrapperForTheGlobalTable;
         initComponents();
-        initTable(nameColumnParameters, map);
+        initTable(wrapperForTheGlobalTable);
     }
 
-    private void initTable(List<String> nameColumnParameters, Map<String, Map<String, Map<String, Building>>> map) {
-        TreeTableModel treeTableModel = new TreeTableModel(nameColumnParameters);
+    private void initTable(WrapperForTheGlobalTable wrapperForTheGlobalTable) {
+        TreeTableModel treeTableModel = new TreeTableModel(wrapperForTheGlobalTable.getNameColumnMap());
         AbstractMutableTreeTableNode root = new NameGroupNode("root", treeTableModel);
-        for (AbstractMutableTreeTableNode node : getNameGroupNode(map, treeTableModel)) {
+        for (AbstractMutableTreeTableNode node : wrapperForTheGlobalTable.getListNode( treeTableModel)) {
             root.add(node);
         }
         treeTableModel.setRoot(root);
@@ -50,32 +51,8 @@ public class PanelWithGlobalTable extends javax.swing.JPanel {
         jScrollPane1.setViewportView(table);
     }
 
-    // TODO как убрать instanceof ( делается для рекурсии в зависимости от входящей мапы)
-    private List<AbstractMutableTreeTableNode> getNameGroupNode(Map<String, ?> map, TreeTableModel treeTableModel) {
-        List<AbstractMutableTreeTableNode> nodes = new ArrayList<>();
-        for (Map.Entry<String, ?> value : map.entrySet()) {
-            AbstractMutableTreeTableNode node = new NameGroupNode(value.getKey(), treeTableModel);
-            if (value.getValue() instanceof Map) {
-                for (AbstractMutableTreeTableNode children : getNameGroupNode((Map<String, Object>) value.getValue(), treeTableModel)) {
-                    node.add(children);
-                }
-            } else if (value.getValue().getClass() == Building.class) {
-                node.add(getBuildingNode((Building) value.getValue(), treeTableModel));
-            } else {
-                throw new IllegalArgumentException();
-            }
-            nodes.add(node);
-        }
-        return nodes;
-    }
 
-    private BuildingNode getBuildingNode(Building building, TreeTableModel treeTableModel) {
-        BuildingNode buildingNode = new BuildingNode(building, treeTableModel);
-        for (FunctionalObjectsInTheBuilding functionalObjectsInTheBuilding : building.getFunctionalObjectsInTheBuildings()) {
-            buildingNode.add(new FunctionalObjectsInTheBuildingNode(functionalObjectsInTheBuilding, treeTableModel));
-        }
-        return buildingNode;
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

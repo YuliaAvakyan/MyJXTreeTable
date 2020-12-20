@@ -7,6 +7,7 @@ package ru.oogis.redevelopment.ui;
 
 import ru.oogis.redevelopment.Start;
 import ru.oogis.redevelopment.data.model.Building;
+import ru.oogis.redevelopment.data.model.WrapperForTheGlobalTable;
 
 import java.util.List;
 import java.util.Map;
@@ -21,9 +22,9 @@ public class FrameForGlobalTable extends javax.swing.JFrame {
      * Creates new form FrameForGlobalTable
      */
 
-    public FrameForGlobalTable(List<String> nameColumnParameters, Map<String, Map<String, Map<String, Building>>> map) {
+    public FrameForGlobalTable(WrapperForTheGlobalTable wrapperForTheGlobalTable) {
         initComponents();
-        add(new PanelWithGlobalTable(nameColumnParameters, map));
+        add(new PanelWithGlobalTable(wrapperForTheGlobalTable));
     }
 
 
