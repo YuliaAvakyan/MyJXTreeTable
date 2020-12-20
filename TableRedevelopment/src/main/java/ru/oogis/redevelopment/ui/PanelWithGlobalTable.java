@@ -28,8 +28,7 @@ public class PanelWithGlobalTable extends javax.swing.JPanel {
     /**
      * Creates new form PanelWithGlobalTable
      */
-    //TODO сделать враппер и туда пихать эту мапу , метод пересбора а node так же в врапер кинуть
-    //                                                             ЖИЛЬЁ           дома       тип
+
     public PanelWithGlobalTable(WrapperForTheGlobalTable wrapperForTheGlobalTable) {
         this.wrapperForTheGlobalTable = wrapperForTheGlobalTable;
         initComponents();
@@ -39,19 +38,17 @@ public class PanelWithGlobalTable extends javax.swing.JPanel {
     private void initTable(WrapperForTheGlobalTable wrapperForTheGlobalTable) {
         TreeTableModel treeTableModel = new TreeTableModel(wrapperForTheGlobalTable.getNameColumnMap());
         AbstractMutableTreeTableNode root = new NameGroupNode("root", treeTableModel);
-        for (AbstractMutableTreeTableNode node : wrapperForTheGlobalTable.getListNode( treeTableModel)) {
+        for (AbstractMutableTreeTableNode node : wrapperForTheGlobalTable.getListNode(treeTableModel)) {
             root.add(node);
         }
         treeTableModel.setRoot(root);
         JXTreeTable table = new JXTreeTable(treeTableModel);
 
         table.setShowGrid(true, true);
-
+       table.setRowHeight(25);
         table.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table);
     }
-
-
 
 
     /**

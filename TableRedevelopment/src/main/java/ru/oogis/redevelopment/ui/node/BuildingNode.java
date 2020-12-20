@@ -14,7 +14,7 @@ public class BuildingNode extends AbstractMutableTreeTableNode {
         this.treeTableModel = treeTableModel;
     }
 
-    //TODO сделать по названию?
+
     public Object getValueAt(int column) {
         switch (column) {
             case 1:
@@ -24,7 +24,7 @@ public class BuildingNode extends AbstractMutableTreeTableNode {
             case 3:
                 return building.getObjectName();
             default:
-                return null;
+                return "";
         }
     }
 
