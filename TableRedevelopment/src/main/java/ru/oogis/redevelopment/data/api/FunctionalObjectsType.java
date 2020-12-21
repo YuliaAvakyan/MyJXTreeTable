@@ -56,6 +56,7 @@ public enum FunctionalObjectsType {
         return "";
     }
 
+
     public static Class getClassTypeByNumber(int number) {
         for (FunctionalObjectsType functionalObjectsType : FunctionalObjectsType.values()) {
             if (functionalObjectsType.ordinal() == number) {
